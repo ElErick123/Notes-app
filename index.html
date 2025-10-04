@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes app</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Changa+One:ital@0;1&family=Poppins:wght@300;400;500;600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Notes</h1>
+            <button id="add-note-btn" onclick="createNote()">+</button>
+        </div>
+        <div class="note-container" id="note-container">
+
+        </div>
+    </div>
+    <div class="add-pop-up">
+        <h2>Create note</h2>
+        <form action="script.js">
+            <div class="input-container">
+                <label for="name">Name: </label> <input type="text" class="input" name="name" id="name-input" placeholder="Name">
+            </div>
+            <div class="input-container">
+                <label for="content">Content: </label> <textarea class="input" name="content" id="content-input" rows="10"></textarea>
+            </div>
+            <button>Create note</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
