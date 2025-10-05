@@ -59,7 +59,17 @@ body {
     border-radius: 20px;
     cursor: pointer;
     overflow: hidden;
-    transition: filter 0.3s ease;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center center;
+}
+
+.note-container .focus-note {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(2);
+    transition: 0.3s ease-in-out;
 }
 
 .note-container .note:hover {
@@ -109,7 +119,7 @@ button > i {
 
 .add-pop-up {
     z-index: 10;
-    display: none;
+    display: block;
     position: fixed;
     flex-direction: column;
     background-color: white;
@@ -118,12 +128,17 @@ button > i {
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
     min-width: 550px;
     width: 25%;
     min-height: 550px;
     height: 50%;
     border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.add-pop-up-active {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .exit-button-layer {

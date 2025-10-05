@@ -11,7 +11,7 @@ let notesArray = [];
 if (localStorage !== null) {
     for (const note of savedNotes) {
         noteContainer.innerHTML += `
-        <div class="note" style="background-color: ${note.color};">
+        <div class="note" style="background-color: ${note.color};" onclick="focusNote(this)">
             <h3>${note.name}</h3>
             <p>${note.content}</p>
             <div id="note-icons">
@@ -24,12 +24,12 @@ if (localStorage !== null) {
 }
 
 const showPopUp = () => {
-    addPopUp.style.display = "block";
+    addPopUp.classList.add("add-pop-up-active");
     popUpOverlay.style.display = "block";
 }
 
 const hidePopUp = () => {
-    addPopUp.style.display = "none";
+    addPopUp.classList.remove("add-pop-up-active");
     popUpOverlay.style.display = "none";
     nameInput.classList.remove("empty-value");
     nameInput.placeholder = "Name of your note";
@@ -61,7 +61,7 @@ const addNote = () => {
     localStorage.setItem("notes", JSON.stringify(notesArray));
     hidePopUp();
     noteContainer.innerHTML += `
-    <div class="note" style="background-color: ${note.color};">
+    <div class="note" style="background-color: ${note.color};" onclick="focusNote(this)">
         <h3>${note.name}</h3>
         <p>${note.content}</p>
         <div id="note-icons">
@@ -71,3 +71,17 @@ const addNote = () => {
     </div>
     `;
 }
+
+const focusNote = (note) => {
+    note.classList.add("focus-note");
+    popUpOverlay.style.display = "block";
+}
+
+const unfocusNote = () => {
+    const focusedNote = document.querySelector(".focus-note");
+    if (focusedNote) {
+        focusedNote.classList.remove("focus-note");
+    }
+};
+
+popUpOverlay.addEventListener("click", unfocusNote);
