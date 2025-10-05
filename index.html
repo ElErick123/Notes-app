@@ -13,24 +13,51 @@
     <div class="wrapper">
         <div class="header">
             <h1>Notes</h1>
-            <button id="add-note-btn" onclick="createNote()">+</button>
+            <button id="add-note-btn" onclick="showPopUp()">+</button>
         </div>
         <div class="note-container" id="note-container">
 
         </div>
     </div>
-    <div class="add-pop-up">
+    <div class="add-pop-up" id="add-pop-up">
+        <div class="exit-button-layer">
+            <button onclick="hidePopUp()" id="exit-button">&times;</button>
+        </div>
         <h2>Create note</h2>
-        <form action="script.js">
+        <div class="form">
             <div class="input-container">
-                <label for="name">Name: </label> <input type="text" class="input" name="name" id="name-input" placeholder="Name">
+                <label for="name-input">Name: </label> <input type="text" class="input" name="name" id="name-input" placeholder="Name of your note">
             </div>
             <div class="input-container">
-                <label for="content">Content: </label> <textarea class="input" name="content" id="content-input" rows="10"></textarea>
+                <label for="content-input">Content: </label> <textarea class="input" name="content" id="content-input" rows="10" placeholder="Content of your note"></textarea>
             </div>
-            <button>Create note</button>
-        </form>
+            <div class="input-container">
+                <label>Color: </label>
+                <div class="color-palette">
+                    <input type="radio" class="color-swatch" name="color-swatch" id="first-swatch" value="rgb(255, 179, 107)" checked >
+                    <label for="first-swatch"><div class="color-fill" style="background-color: rgb(255, 179, 107);"></div></label>
+
+                    <input type="radio" class="color-swatch" name="color-swatch" id="second-swatch" value="rgb(255, 135, 225)">
+                    <label for="second-swatch"><div class="color-fill" style="background-color: rgb(255, 135, 225);"></div></label>
+                    
+                    <input type="radio" class="color-swatch" name="color-swatch" id="third-swatch" value="rgb(129, 148, 255)">
+                    <label for="third-swatch"><div class="color-fill" style="background-color: rgb(129, 148, 255);"></div></label>
+                    
+                    <input type="radio" class="color-swatch" name="color-swatch" id="fourth-swatch" value="rgb(157, 255, 148)">
+                    <label for="fourth-swatch"><div class="color-fill" style="background-color: rgb(157, 255, 148);"></div></label>
+                    
+                    <input type="radio" class="color-swatch" name="color-swatch" id="fifth-swatch" value="rgb(255, 120, 120)">
+                    <label for="fifth-swatch"><div class="color-fill" style="background-color: rgb(255, 120, 120);"></div></label>
+                    
+                    <input type="radio" class="color-swatch" name="color-swatch" id="sixth-swatch" value="rgb(149, 255, 255)">
+                    <label for="sixth-swatch"><div class="color-fill" style="background-color: rgb(149, 255, 255);"></div></label>
+                </div>
+            </div>
+            <button onclick="addNote()"  id="create-note-button">Create note</button>
+        </div>
     </div>
+    <div class="overlay" id="overlay" onclick="hidePopUp()"></div>
+    <script src="https://kit.fontawesome.com/b91d735790.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
