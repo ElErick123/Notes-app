@@ -6,7 +6,8 @@ const nameInput = document.getElementById("name-input");
 const contentInput = document.getElementById("content-input");
 const colorSelection = document.getElementsByName("color-swatch");
 const savedNotes = JSON.parse(localStorage.getItem("notes")) || []
-let notesArray = [];
+let notesArray = [...savedNotes];
+const note = document.querySelectorAll(".note");
 
 if (localStorage !== null) {
     for (const note of savedNotes) {
@@ -15,8 +16,8 @@ if (localStorage !== null) {
             <h3>${note.name}</h3>
             <p>${note.content}</p>
             <div id="note-icons">
-                <button class="note-button" id="edit-note-button"><i class="fa-solid fa-pen"></i></button>
-                <button class="note-button" id="delete-note-button"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="note-button" id="edit-note-button" onclick="event.stopPropagation(); editNote(this.parentElement.parentElement)"><i class="fa-solid fa-pen"></i></button>
+                <button class="note-button" id="delete-note-button" onclick="event.stopPropagation(); editNote(this.parentElement.parentElement)"><i class="fa-solid fa-trash-can"></i></button>
             </div>
         </div>
         `
@@ -51,12 +52,12 @@ const addNote = () => {
             break;
         }
     }
+    const formattedContent = contentInput.value.replace(/\n/g, '<br>');
     let note = {
         name: nameInput.value,
-        content: contentInput.value,
+        content: formattedContent,
         color: selectedColor
     }
-    notesArray = savedNotes;
     notesArray.push(note);
     localStorage.setItem("notes", JSON.stringify(notesArray));
     hidePopUp();
@@ -65,23 +66,32 @@ const addNote = () => {
         <h3>${note.name}</h3>
         <p>${note.content}</p>
         <div id="note-icons">
-            <button class="note-button" id="edit-note-button"><i class="fa-solid fa-pen"></i></button>
-            <button class="note-button" id="delete-note-button"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="note-button" id="edit-note-button" onclick="event.stopPropagation(); editNote(this.parentElement.parentElement)"><i class="fa-solid fa-pen"></i></button>
+            <button class="note-button" id="delete-note-button" onclick="event.stopPropagation(); editNote(this.parentElement.parentElement)"><i class="fa-solid fa-trash-can"></i></button>
         </div>
     </div>
     `;
 }
 
 const focusNote = (note) => {
-    note.classList.add("focus-note");
+    const newNote = note.cloneNode(true);
+    newNote.classList.remove("note");
+    newNote.classList.add("new-note");
+    newNote.removeAttribute("onclick");
+    const iconsDiv = newNote.querySelector("#note-icons");
+    iconsDiv.remove();
+    document.body.appendChild(newNote);
+    newNote.offsetHeight;
+    newNote.classList.add("new-note-active");
     popUpOverlay.style.display = "block";
 }
 
 const unfocusNote = () => {
-    const focusedNote = document.querySelector(".focus-note");
-    if (focusedNote) {
-        focusedNote.classList.remove("focus-note");
-    }
+    const activeNote = document.querySelector(".new-note-active");
+    activeNote.classList.remove("new-note-active");
+    setTimeout(() => {
+        activeNote.remove();
+    }, 300);
 };
 
 popUpOverlay.addEventListener("click", unfocusNote);

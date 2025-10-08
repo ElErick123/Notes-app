@@ -6,6 +6,7 @@
 }
 
 body {
+    min-width: 600px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -50,6 +51,41 @@ body {
     padding: 3%;
 }
 
+.new-note, .edited-note {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    padding: 2%;
+    width: 23%;
+    min-height: 250px;
+    border-radius: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.new-note:hover {
+    filter: brightness(1.2);
+}
+
+.edited-note:hover {
+    filter: brightness(1.2);
+}
+
+.new-note h3 {
+    font-size: 1.5em;
+    margin-bottom: 2%;
+}
+
+.new-note p {
+    height: 100%;
+}
+
+.new-note-active, .edited-note-active {
+    transform: translate(-50%, -50%) scale(3);
+}
+
 .note-container .note {
     display: flex;
     flex-direction: column;
@@ -60,16 +96,6 @@ body {
     cursor: pointer;
     overflow: hidden;
     transition: 0.3s ease-in-out;
-    transform-origin: center center;
-}
-
-.note-container .focus-note {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%) scale(2);
-    transition: 0.3s ease;
 }
 
 .note-container .note:hover {
@@ -78,7 +104,7 @@ body {
 
 .note h3 {
     font-size: 1.5em;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .note p {
