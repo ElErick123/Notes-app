@@ -51,7 +51,7 @@ body {
     padding: 3%;
 }
 
-.new-note, .edited-note {
+.new-note, .edit-note {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -65,12 +65,58 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-.new-note:hover {
-    filter: brightness(1.2);
+.edit-note {
+    padding: 1% !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
-.edited-note:hover {
-    filter: brightness(1.2);
+.new-note-active, .edit-note-active {
+    transform: translate(-50%, -50%) scale(3);
+}
+
+.edit-note #edit-note-name {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.500);
+    width: 100%;
+    height: 8%;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+.edit-note #edit-note-content {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.500);
+    width: 100%;
+    resize: none;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+.edit-note #done-edit-button {
+    padding: 2%;
+    font-size: 1;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    align-self: center;
+    justify-self: center;
+    width: 30%;
+    height: 5%;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.edit-note #done-edit-button:hover {
+    background-color: rgb(46, 46, 46);
+}
+
+.edit-note #edit-note-name:focus , #edit-note-content:focus {
+    outline: 1px solid white;
+    border: 1px solid rgba(0, 0, 0, 0.500);
 }
 
 .new-note h3 {
@@ -80,10 +126,6 @@ body {
 
 .new-note p {
     height: 100%;
-}
-
-.new-note-active, .edited-note-active {
-    transform: translate(-50%, -50%) scale(3);
 }
 
 .note-container .note {
@@ -100,6 +142,7 @@ body {
 
 .note-container .note:hover {
     filter: brightness(1.2);
+    transform: scale(1.05);
 }
 
 .note h3 {
@@ -174,7 +217,7 @@ button > i {
     width: 100%;
 }
 
-.exit-button-layer #exit-button {
+.add-pop-up .exit-button-layer .exit-button {
     width: 30px;
     height: 30px;
     margin-right: 20px;
@@ -188,8 +231,8 @@ button > i {
     transition: 0.3s ease;
 }
 
-#exit-button:hover {
-    background-color: rgb(66, 66, 66);
+.exit-button:hover {
+    background-color: rgb(66, 66, 66) !important;
 }
 
 .add-pop-up h2 {
@@ -279,7 +322,84 @@ button > i {
 
 .form button:hover {
     background-color: rgb(66, 66, 66);
-    font-size: 1.1em;
+    transform: scale(1.05);
+}
+
+.delete-pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.delete-pop-up .exit-button-layer .exit-button {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-color: black;
+    color: white;
+    font-size: 0.75em;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.delete-pop-up h2 {
+    padding: 0 20px 10px 20px;
+}
+
+.delete-pop-up p {
+    padding: 0 20px 20px 20px;
+}
+
+.delete-pop-up .delete-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.delete-pop-up .delete-buttons button {
+    font-size: 16px;
+    padding: 2%;
+    border: none;
+    border-radius: 10px;
+    width: 25%;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.delete-pop-up .delete-buttons #confirm-delete {
+    background-color: red;
+}
+
+.delete-pop-up .delete-buttons #confirm-delete:hover {
+    background-color: rgb(255, 106, 106);
+}
+
+.delete-pop-up .delete-buttons #deny-delete {
+    background-color: rgb(207, 207, 207);
+}
+
+.delete-pop-up .delete-buttons #cancel-delete:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.delete-pop-up-active {
+    transform: translate(-50%, -50%) scale(2);
 }
 
 .overlay {

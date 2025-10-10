@@ -13,7 +13,7 @@
     <div class="wrapper">
         <div class="header">
             <h1>Notes</h1>
-            <button id="add-note-btn" onclick="showPopUp()">+</button>
+            <button id="add-note-btn" onclick="showPopUp('add-pop-up', 'null')">+</button>
         </div>
         <div class="note-container" id="note-container">
 
@@ -21,7 +21,7 @@
     </div>
     <div class="add-pop-up" id="add-pop-up">
         <div class="exit-button-layer">
-            <button onclick="hidePopUp()" id="exit-button">&times;</button>
+            <button onclick="hidePopUp('add-pop-up')" class="exit-button">&times;</button>
         </div>
         <h2>Create note</h2>
         <div class="form">
@@ -54,6 +54,17 @@
                 </div>
             </div>
             <button onclick="addNote()"  id="create-note-button">Create note</button>
+        </div>
+    </div>
+    <div class="delete-pop-up" id="delete-pop-up">
+        <div class="exit-button-layer">
+            <button onclick="hidePopUp()" class="exit-button">&times;</button>
+        </div>
+        <h2>Delete note</h2>
+        <p>Are you sure you want to delete this note?</p>
+        <div class="delete-buttons">
+            <button id="confirm-delete">Delete</button>
+            <button id="cancel-delete" onclick="hidePopUp()">Cancel</button>
         </div>
     </div>
     <div class="overlay" id="overlay" onclick="hidePopUp()"></div>
